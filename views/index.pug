@@ -26,6 +26,7 @@ body
                 if person.amountOfWeighins > 1
                   li Laatste weging: #{person.lastWeight}KG
                   li Huidige BMI: #{person.currentBmi.toFixed(2)}
+                  li Procentuele verandering: #{person.percentageChange.toFixed(2)}
         .weightInput
           h2 Nieuwe weging invoeren
           form(method='POST' action='/weighins')
@@ -42,7 +43,7 @@ body
         each chat in chats
           .chat
             p
-              strong #{chat.author} (#{chat.date.getDate()}-#{chat.date.getMonth() + 1} #{chat.date.getUTCHours()}:#{chat.date.getMinutes() < 10 ? "0" + chat.date.getMinutes() : chat.date.getMinutes()}): 
+              strong #{chat.author} (#{chat.date.getDate()}-#{chat.date.getMonth() + 1} #{chat.date.getUTCHours()}:#{chat.date.getMinutes() < 10 ? "0" + chat.date.getMinutes() : chat.date.getMinutes()}):
               | #{chat.message}
         .chatInput
           h2 Nieuw bericht schrijven

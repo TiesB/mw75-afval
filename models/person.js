@@ -48,4 +48,8 @@ personSchema.virtual('currentBmi').get(function () {
 	return this.lastWeight / (this.length * this.length)
 });
 
+personSchema.virtual('percentageChange').get(function () {
+	return (this.lastWeight - this.startWeight) / this.startWeight * 100;
+});
+
 module.exports = model('Person', personSchema);
