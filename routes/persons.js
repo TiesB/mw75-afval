@@ -7,7 +7,7 @@ var Person = require('../models/person');
 router.get('/', function(req, res, next) {
   Person.find({}, function (err, persons) {
     if (err) {
-      res.send(err);
+      res.render('error', {error: err});
       return;
     }
     res.send(persons);
@@ -18,7 +18,7 @@ router.post('/', function (req, res, next) {
   var newPerson = new Person(req.body);
   newPerson.save(function (err) {
     if (err) {
-      res.send(err);
+      res.render('error', {error: err});
       return;
     }
     res.send(req.body);

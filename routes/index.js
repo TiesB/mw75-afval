@@ -2,15 +2,22 @@ var express = require('express');
 var router = express.Router();
 require('mongoose');
 var Person = require('../models/person');
+var Chat = require('../models/chat');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   Person.find({}, function (err, persons) {
     if (err) {
-      res.send(err);
+      res.render('error', {error: err});
     }
 
-    res.render('index', { persons: persons });
+    Chat.find({}, function (err, chats) {
+      if (err) {
+        res.render('error', {error: err});
+      }
+
+      res.render('index', {persons: persons, chats: chats.reverse()});
+    })
   });
 });
 

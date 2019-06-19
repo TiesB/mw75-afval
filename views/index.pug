@@ -14,25 +14,43 @@ html
 body
     h1 Welkom op de afval website!
     div(id='chart_container')
-    each person in persons
-      .person
-        h3 #{person.name}
-        ul
-          if person.amountOfWeighins > 0
-            li Startgewicht: #{person.startWeight}KG
-            li Start-BMI: #{person.startBmi.toFixed(2)}
-            if person.amountOfWeighins > 1
-              li Laatste weging: #{person.lastWeight}KG
-              li Huidige BMI: #{person.currentBmi.toFixed(2)}
-    .weightInput
-      h2 Nieuwe weging invoeren
-      form(method='POST' action='/weighins')
-        select(name='name')
-          each person in persons
-            option #{person.name}
-        br
-        input(type='number' name='weight' step='0.1' placeholder="Gewicht")
-        br
-        textarea(name='comment' placeholder="Opmerking")
-        br
-        input(type='submit')
+    .row
+      .column
+        each person in persons
+          .person
+            h3 #{person.name}
+            ul
+              if person.amountOfWeighins > 0
+                li Startgewicht: #{person.startWeight}KG
+                li Start-BMI: #{person.startBmi.toFixed(2)}
+                if person.amountOfWeighins > 1
+                  li Laatste weging: #{person.lastWeight}KG
+                  li Huidige BMI: #{person.currentBmi.toFixed(2)}
+        .weightInput
+          h2 Nieuwe weging invoeren
+          form(method='POST' action='/weighins')
+            select(name='name')
+              each person in persons
+                option #{person.name}
+            br
+            input(type='number' name='weight' step='0.1' placeholder="Gewicht")
+            br
+            textarea(name='comment' placeholder="Opmerking")
+            br
+            input(type='submit')
+      .column
+        each chat in chats
+          .chat
+            p
+              strong #{chat.author} (#{chat.date.getDate()}-#{chat.date.getMonth() + 1} #{chat.date.getUTCHours()}:#{chat.date.getMinutes()}):
+              | #{chat.message}
+        .chatInput
+          h2 Nieuw bericht schrijven
+          form(method='POST' action='/chats')
+            select(name='author')
+              each person in persons
+                option #{person.name}
+            br
+            textarea(name='message' placeholder="Bericht")
+            br
+            input(type='submit')

@@ -18,7 +18,7 @@ function loadCharts(persons) {
 				weighinDate.setMinutes(0);
 				weighinDate.setSeconds(0);
 				weighinDate.setMilliseconds(0);
-				const dateString = weighinDate.getDay() + "-" + weighinDate.getMonth();
+				const dateString = weighinDate.getDate() + "-" + weighinDate.getMonth();
 				if (!days.hasOwnProperty(dateString)) {
 					days[dateString] = {};
 					days[dateString]["date"] = weighinDate;

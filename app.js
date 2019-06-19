@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var personsRouter = require('./routes/persons');
 var weighinsRouter = require('./routes/weighins');
+var chatsRouter = require('./routes/chats');
 
 mongoose.connect('mongodb+srv://mw75afval:test@cluster0-gnjmu.azure.mongodb.net/afval?retryWrites=true&w=majority', {useNewUrlParser: true});
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/persons', personsRouter);
 app.use('/weighins', weighinsRouter);
+app.use('/chats', chatsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
