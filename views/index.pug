@@ -25,6 +25,7 @@ body
               li Laatste weging: #{person.lastWeight}KG
               li Huidige BMI: #{person.currentBmi.toFixed(2)}
     .weightInput
+      h2 Nieuwe weging invoeren
       form(method='POST' action='/weighins')
         select(name='name')
           each person in persons
