@@ -42,7 +42,7 @@ body
         each chat in chats
           .chat
             p
-              strong #{chat.author} (#{chat.date.getDate()}-#{chat.date.getMonth() + 1} #{chat.date.getUTCHours()}:#{chat.date.getMinutes()}):
+              strong #{chat.author} (#{chat.date.getDate()}-#{chat.date.getMonth() + 1} #{chat.date.getUTCHours()}:#{chat.date.getMinutes() < 10 ? "0" + chat.date.getMinutes() : chat.date.getMinutes()}):
               | #{chat.message}
         .chatInput
           h2 Nieuw bericht schrijven
