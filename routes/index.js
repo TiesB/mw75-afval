@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 require('mongoose');
-var Person = require('../models/person');
-var Chat = require('../models/chat');
+const Person = require('../models/person');
+const Chat = require('../models/chat');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   Person.find({}, function (err, persons) {
     if (err) {
       res.render('error', {error: err});

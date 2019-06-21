@@ -1,20 +1,20 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var sassMiddleware = require('node-sass-middleware');
-var mongoose = require('mongoose');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const sassMiddleware = require('node-sass-middleware');
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var personsRouter = require('./routes/persons');
-var weighinsRouter = require('./routes/weighins');
-var chatsRouter = require('./routes/chats');
+const indexRouter = require('./routes/index');
+const personsRouter = require('./routes/persons');
+const weighinsRouter = require('./routes/weighins');
+const chatsRouter = require('./routes/chats');
 
 mongoose.connect('mongodb+srv://mw75afval:test@cluster0-gnjmu.azure.mongodb.net/afval?retryWrites=true&w=majority', {useNewUrlParser: true});
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

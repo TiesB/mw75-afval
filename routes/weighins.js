@@ -1,14 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 require('mongoose');
-var Person = require('../models/person');
+const Person = require('../models/person');
 
-router.post('/', function (req, res, next) {
+router.post('/', function (req, res) {
 	const {name, weight, comment} = req.body;
 
 	Person.findByName(name, function(err, person) {
 		if (err) {
-			res.render('error', {error: err})
+			res.render('error', {error: err});
 			return;
 		}
 		person.weighins.push({date: new Date(Date.now()), weight, comment});

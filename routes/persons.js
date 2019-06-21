@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 require('mongoose');
-var Person = require('../models/person');
+const Person = require('../models/person');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   Person.find({}, function (err, persons) {
     if (err) {
       res.render('error', {error: err});
@@ -14,8 +14,8 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.post('/', function (req, res, next) {
-  var newPerson = new Person(req.body);
+router.post('/', function (req, res) {
+  const newPerson = new Person(req.body);
   newPerson.save(function (err) {
     if (err) {
       res.render('error', {error: err});

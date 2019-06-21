@@ -3,7 +3,7 @@ function loadCharts(persons) {
 	google.charts.setOnLoadCallback(drawChart);
 
 	function drawChart() {
-		var data = new google.visualization.DataTable();
+		const data = new google.visualization.DataTable();
 		data.addColumn('date', 'Meetdag');
 
 		const days = {};
@@ -51,7 +51,7 @@ function loadCharts(persons) {
 		// ]);
 
 		// Set chart options
-		var options = {
+		const options = {
 			curveType: 'function',
 			legend: {position: 'bottom'},
 			interpolateNulls: true,
@@ -59,12 +59,12 @@ function loadCharts(persons) {
 				format: 'd MMMM'
 			},
 			vAxis: {
-				format: '##KG',
+				format: '##KG'
 			}
 		};
 
 		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.LineChart(document.getElementById('chart_container'));
+		const chart = new google.visualization.LineChart(document.getElementById('chart_container'));
 		chart.draw(data, options);
 	}
 }
