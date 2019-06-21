@@ -59,10 +59,7 @@ function loadCharts(persons) {
 				format: 'd MMMM'
 			},
 			vAxis: {
-				viewWindow: {
-					min: 0,
-					max: 100
-				}
+				format: '##KG',
 			}
 		};
 
