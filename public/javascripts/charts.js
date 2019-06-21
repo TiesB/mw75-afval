@@ -33,7 +33,7 @@ function loadCharts(persons) {
 				const date = dict["date"];
 				let row = [date];
 				for (let i = 0; i < persons.length; i++) {
-					row.push(dict.hasOwnProperty(i) ? dict[i] : undefined);
+					row.push(dict.hasOwnProperty(i) ? dict[i] : null);
 				}
 
 				data.addRows([
@@ -54,6 +54,7 @@ function loadCharts(persons) {
 		var options = {
 			curveType: 'function',
 			legend: {position: 'bottom'},
+			interpolateNulls: true,
 			hAxis: {
 				format: 'd MMMM'
 			},
