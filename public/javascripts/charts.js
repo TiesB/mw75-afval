@@ -23,7 +23,10 @@ function loadCharts(persons) {
 					days[dateString] = {};
 					days[dateString]["date"] = weighinDate;
 				}
-				days[dateString][i] = weighin.weight;
+				days[dateString][i] = {
+					v: weighin.weight,
+					f: `${weighin.weight}${weighin.comment && weighin.comment.length > 0 ? `\nOpmerking: ${weighin.comment}` : ""}`
+				};
 			}
 		}
 
