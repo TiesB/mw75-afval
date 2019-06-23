@@ -55,6 +55,7 @@ function loadCharts(persons) {
 			curveType: 'function',
 			legend: {position: 'bottom'},
 			interpolateNulls: true,
+			height: 400,
 			hAxis: {
 				format: 'd MMMM'
 			},
