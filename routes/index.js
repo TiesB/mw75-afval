@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
         res.render('error', {error: err});
       }
 
-      res.render('index', {persons: persons, chats: chats.reverse().slice(0, 16)});
+      res.render('index', {persons: persons, chats: chats.reverse().slice(0, 30)});
     })
   });
 });
