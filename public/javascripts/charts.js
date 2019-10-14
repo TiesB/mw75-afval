@@ -30,19 +30,37 @@ function loadCharts(persons) {
 			}
 		}
 
+		const ddd = [];
 		for (const key in days) {
 			if (key.match(/\d{1,2}-\d{1,2}/g).length > 0) {
-				const dict = days[key];
-				const date = dict["date"];
-				let row = [date];
-				for (let i = 0; i < persons.length; i++) {
-					row.push(dict.hasOwnProperty(i) ? dict[i] : null);
-				}
-
-				data.addRows([
-					row
-				])
+				ddd.push(key);
 			}
+		}
+
+		ddd.sort((a, b) => {
+			const dA = parseInt(a.split("-")[0], 10);
+			const dB = parseInt(b.split("-")[0], 10);
+			const mA = parseInt(a.split("-")[1], 10);
+			const mB = parseInt(b.split("-")[1], 10);
+
+			const c = mA - mB;
+			if (c === 0) {
+				return dA - dB;
+			}
+			return c;
+		});
+
+		for (const day of ddd) {
+			const dict = days[day];
+			const date = dict["date"];
+			let row = [date];
+			for (let i = 0; i < persons.length; i++) {
+				row.push(dict.hasOwnProperty(i) ? dict[i] : null);
+			}
+
+			data.addRows([
+				row
+			])
 		}
 		// var today = new Date(Date.now());
 		// var tomorrow = new Date(Date.now());
