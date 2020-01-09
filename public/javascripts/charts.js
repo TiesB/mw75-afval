@@ -34,6 +34,8 @@ function loadCharts(persons) {
 			if (key.length === 8) {
 				console.log(key, days[key]);
 				ddd.push(key);
+			} else {
+				console.log('wtf', key);
 			}
 		}
 
@@ -64,14 +66,6 @@ function loadCharts(persons) {
 				row
 			])
 		}
-		// var today = new Date(Date.now());
-		// var tomorrow = new Date(Date.now());
-		// tomorrow.setDate(28);
-		// data.addRows([
-		// 	[today, 3, 8],
-		// 	[tomorrow, undefined, 5],
-		// 	[tomorrow, 6, undefined],
-		// ]);
 
 		// Set chart options
 		const options = {
