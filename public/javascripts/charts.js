@@ -17,7 +17,7 @@ function loadCharts(persons) {
 				weighinDate.setMinutes(0);
 				weighinDate.setSeconds(0);
 				weighinDate.setMilliseconds(0);
-				const dateString = "" + weighinDate.getFullYear() + (weighinDate.getMonth().toString(10).length < 2 ? '0' + weighinDate.getMonth() : weighinDate.getMonth()) + weighinDate.getDate();
+				const dateString = "" + weighinDate.getFullYear() + (weighinDate.getMonth().toString(10).length < 2 ? '0' + weighinDate.getMonth() : weighinDate.getMonth()) + (weighinDate.getDate().toString(10).length < 2 ? '0' + weighinDate.getDate() : weighinDate.getDate());
 				if (!days.hasOwnProperty(dateString)) {
 					days[dateString] = {};
 					days[dateString]["date"] = weighinDate;
