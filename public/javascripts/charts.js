@@ -18,7 +18,7 @@ function loadCharts(persons) {
 				weighinDate.setMinutes(0);
 				weighinDate.setSeconds(0);
 				weighinDate.setMilliseconds(0);
-				const dateString = weighinDate.getDate() + "-" + weighinDate.getMonth();
+				const dateString = "" + weighinDate.getFullYear() + weighinDate.getMonth() + weighinDate.getDate();
 				if (!days.hasOwnProperty(dateString)) {
 					days[dateString] = {};
 					days[dateString]["date"] = weighinDate;
@@ -37,18 +37,21 @@ function loadCharts(persons) {
 			}
 		}
 
-		ddd.sort((a, b) => {
-			const dA = parseInt(a.split("-")[0], 10);
-			const dB = parseInt(b.split("-")[0], 10);
-			const mA = parseInt(a.split("-")[1], 10);
-			const mB = parseInt(b.split("-")[1], 10);
 
-			const c = mA - mB;
-			if (c === 0) {
-				return dA - dB;
-			}
-			return c;
-		});
+		ddd.sort()
+
+		// ddd.sort((a, b) => {
+		// 	const dA = parseInt(a.split("-")[0], 10);
+		// 	const dB = parseInt(b.split("-")[0], 10);
+		// 	const mA = parseInt(a.split("-")[1], 10);
+		// 	const mB = parseInt(b.split("-")[1], 10);
+		//
+		// 	const c = mA - mB;
+		// 	if (c === 0) {
+		// 		return dA - dB;
+		// 	}
+		// 	return c;
+		// });
 
 		for (const day of ddd) {
 			const dict = days[day];
