@@ -11,8 +11,7 @@ function loadCharts(persons) {
 		for (let i = 0; i < persons.length; i++) {
 			const person = persons[i];
 			data.addColumn('number', person.name);
-			for (let j = 0; j < person.weighins.length; j++) {
-				const weighin = person.weighins[j];
+			for (const weighin of person.weighins) {
 				const weighinDate = new Date(Date.parse(weighin.date));
 				weighinDate.setHours(0);
 				weighinDate.setMinutes(0);
@@ -33,10 +32,11 @@ function loadCharts(persons) {
 		const ddd = [];
 		for (const key in days) {
 			if (key.length === 8) {
+				console.log(key, days[key]);
 				ddd.push(key);
 			}
 		}
-		
+
 		ddd.sort();
 
 		// ddd.sort((a, b) => {
