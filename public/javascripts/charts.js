@@ -32,13 +32,12 @@ function loadCharts(persons) {
 
 		const ddd = [];
 		for (const key in days) {
-			if (key.match(/\d{1,2}-\d{1,2}/g).length > 0) {
+			if (key.length === 8) {
 				ddd.push(key);
 			}
 		}
-
-
-		ddd.sort()
+		
+		ddd.sort();
 
 		// ddd.sort((a, b) => {
 		// 	const dA = parseInt(a.split("-")[0], 10);
