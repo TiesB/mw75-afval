@@ -7,25 +7,30 @@ function loadCharts(persons) {
 		data.addColumn('date', 'Meetdag');
 
 		const days = {};
+		let hiddenPersons = 0;
 
 		for (let i = 0; i < persons.length; i++) {
 			const person = persons[i];
-			data.addColumn('number', person.name);
-			for (const weighin of person.weighins) {
-				const weighinDate = new Date(Date.parse(weighin.date));
-				weighinDate.setHours(0);
-				weighinDate.setMinutes(0);
-				weighinDate.setSeconds(0);
-				weighinDate.setMilliseconds(0);
-				const dateString = "" + weighinDate.getFullYear() + (weighinDate.getMonth().toString(10).length < 2 ? '0' + weighinDate.getMonth() : weighinDate.getMonth()) + (weighinDate.getDate().toString(10).length < 2 ? '0' + weighinDate.getDate() : weighinDate.getDate());
-				if (!days.hasOwnProperty(dateString)) {
-					days[dateString] = {};
-					days[dateString]["date"] = weighinDate;
+			if (!person.hidden) {
+				data.addColumn('number', person.name);
+				for (const weighin of person.weighins) {
+					const weighinDate = new Date(Date.parse(weighin.date));
+					weighinDate.setHours(0);
+					weighinDate.setMinutes(0);
+					weighinDate.setSeconds(0);
+					weighinDate.setMilliseconds(0);
+					const dateString = "" + weighinDate.getFullYear() + (weighinDate.getMonth().toString(10).length < 2 ? '0' + weighinDate.getMonth() : weighinDate.getMonth()) + (weighinDate.getDate().toString(10).length < 2 ? '0' + weighinDate.getDate() : weighinDate.getDate());
+					if (!days.hasOwnProperty(dateString)) {
+						days[dateString] = {};
+						days[dateString]["date"] = weighinDate;
+					}
+					days[dateString][i - hiddenPersons] = {
+						v: weighin.weight,
+						f: `${weighin.weight}${weighin.comment && weighin.comment.length > 0 ? `\nOpmerking: ${weighin.comment}` : ""}`
+					};
 				}
-				days[dateString][i] = {
-					v: weighin.weight,
-					f: `${weighin.weight}${weighin.comment && weighin.comment.length > 0 ? `\nOpmerking: ${weighin.comment}` : ""}`
-				};
+			} else {
+				hiddenPersons += 1;
 			}
 		}
 
@@ -58,7 +63,7 @@ function loadCharts(persons) {
 			const dict = days[day];
 			const date = dict["date"];
 			let row = [date];
-			for (let i = 0; i < persons.length; i++) {
+			for (let i = 0; i < persons.length - hiddenPersons; i++) {
 				row.push(dict.hasOwnProperty(i) ? dict[i] : null);
 			}
 
