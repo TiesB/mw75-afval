@@ -7,9 +7,9 @@
   },
   "dependencies": {
     "cookie-parser": "latest",
-    "debug": "latest",
+    "debug": "^4.2.0",
     "express": "latest",
-    "http-errors": "latest",
+    "http-errors": "^1.8.0",
     "mongoose": "latest",
     "morgan": "latest",
     "node-sass-middleware": "latest",
