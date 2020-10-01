@@ -3,7 +3,8 @@ const { Schema, model } = require('mongoose');
 const personSchema = new Schema({
 	name: String,
 	length: Number,
-	weighins: [{date: {type: Date, default: Date.now}, weight: Number, comment: String}]
+	weighins: [{date: {type: Date, default: Date.now}, weight: Number, comment: String}],
+	hidden: Boolean
 });
 
 personSchema.query.byName = function(name) {

@@ -17,16 +17,17 @@ body
     .row
       .column
         each person in persons
-          .person
-            h3 #{person.name}
-            ul
-              if person.amountOfWeighins > 0
-                li Startgewicht: #{person.startWeight}KG
-                li Start-BMI: #{person.startBmi.toFixed(2)}
-                if person.amountOfWeighins > 1
-                  li Laatste weging: #{person.lastWeight}KG
-                  li Huidige BMI: #{person.currentBmi.toFixed(2)}
-                  li Procentuele verandering: #{person.percentageChange.toFixed(2)}%
+          if !person.hidden
+            .person
+              h3 #{person.name}
+              ul
+                if person.amountOfWeighins > 0
+                  li Startgewicht: #{person.startWeight}KG
+                  li Start-BMI: #{person.startBmi.toFixed(2)}
+                  if person.amountOfWeighins > 1
+                    li Laatste weging: #{person.lastWeight}KG
+                    li Huidige BMI: #{person.currentBmi.toFixed(2)}
+                    li Procentuele verandering: #{person.percentageChange.toFixed(2)}%
         .weightInput
           h2 Nieuwe weging invoeren
           form(method='POST' action='/weighins')
